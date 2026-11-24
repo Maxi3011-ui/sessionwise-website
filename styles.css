@@ -1,6 +1,7 @@
 /*
   Produktseite und Datenschutzerklärung: eine Datei für alle Seiten.
-  Bewusst schlicht: System-Schriften, keine externen Quellen, kein JavaScript.
+  Bewusst schlicht: System-Schriften (nur die Wortmarke in Archivo, selbst
+  ausgeliefert), keine externen Quellen, kein JavaScript.
   Helle und dunkle Darstellung über prefers-color-scheme; Farbpaare mit
   Kontrast mindestens 4.5:1 (Text) bzw. 3:1 (Linien, Fokus).
 */
@@ -9,6 +10,7 @@
   color-scheme: light dark;
 
   --bg: #fbfbfa;
+  --brand: #0f6b7c;
   --surface: #f1f1ee;
   --text: #1c1d1f;
   --muted: #55585d;
@@ -32,6 +34,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --bg: #141516;
+    --brand: #6fc3d1;
     --surface: #1e2022;
     --text: #e8e8e5;
     --muted: #a9acb0;
@@ -129,15 +132,47 @@ summary:focus-visible {
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
+@font-face {
+  font-family: "Archivo";
+  src: url("assets/archivo-latin.woff2") format("woff2");
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-display: swap;
+}
 .wordmark {
-  font-weight: 700;
-  letter-spacing: 0.02em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
   color: var(--text);
   text-decoration: none;
 }
 .wordmark:hover {
   color: var(--text);
+}
+.wordmark:hover .wordmark-text {
   text-decoration: underline;
+}
+.wordmark-text {
+  font-family: "Archivo", system-ui, sans-serif;
+  font-weight: 720;
+  font-stretch: 84%;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.mark {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex: none;
+  color: var(--brand);
+}
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.footer-brand .mark {
+  width: 1.125rem;
+  height: 1.125rem;
 }
 .site-nav ul {
   display: flex;
